@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Form With PHP</title>
+</head>
+<body>
+	<form action="action.php" method="post">
+		<label>Email :</label>
+		<input type="text" name="email" value="Email" placeholder="Enter Your Email"><br>
+
+		<label>Password :</label>
+		<input type="password" name="pass" value="Password" placeholder="Enter Your Password"><br>
+		<input type="submit" name="submit" value="Click Here">
+		
+
+	</form>
+
+	
+	
+</body>
+</html>
