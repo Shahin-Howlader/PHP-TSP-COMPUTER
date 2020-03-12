@@ -10,28 +10,48 @@
 		//echo "<pre>";
 		//print_r($_FILES);
 
-		$name= $_FILES['homework']['name']);
+		$name= $_FILES['homework']['name'];
+		$ext = pathinfo($name, PATHINFO_EXTENSION);
+		$ext = strtolower($ext);
+		$allowedTypes = array("jpg","png","jpeg");
+
+
 		$tmp_name= $_FILES['homework']['tmp_name'];
 		$size= $_FILES['homework']['size'];
 		$ok =false;
 		$msg=array();
 
 		if ($size>204800) {
-			$msg[] = "Size allowed  more than 200KB";
+			$msg[] = "Size is not allowed  more than 200KB";
 			$ok =false;
 
-		}else{
+		}elseif(!in_array($ext, $allowedTypes)){
+			$ok = false;
+			$msg[] = "File Must be jpg, png or jpeg";
+
+		}else {
+			$ok=true;
+		}
 			
+	
+		if($ok && is_uploaded_file($tmp_name))
+		{
+			move_uploaded_file($tmp_name, "uploads/" . $name);
 
-		if(is_uploaded_file($tmp_name)){
-			move_uploaded_file($tmp_name, "uploads/" . $name;
+			 echo "File uploaded Successfully <br>";
+			 echo "<img src='uploads/$name' width=100px; height=100px> <br>";
 
+
+
+		}else{
+			 echo "Sorry File can't be uploaded";
+			 print_r($msg);
 
 		}
-	}
+	
 
 
-}
+}// Isset Closing
 
 	?>
 
